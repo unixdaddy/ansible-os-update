@@ -28,10 +28,3 @@
 
 - meta: flush_handlers
 
-- name: cleanup old kernels - keep "{{ old_kernel_history_count }}"
-  command: package-cleanup --oldkernels --count="{{ old_kernel_history_count}}" -y
-  register: out
-  changed_when: not 'No old kernels to remove' in out.stdout
-  when:
-  - cleanup_old_kernels
-  - not_in_zone.changed
